@@ -1,0 +1,35 @@
+#lib
+from bs4 import BeautifulSoup
+
+#URL
+url = "https://us.pandora.net/en/charms/?src=categorySearch&position=top"
+html = urlopen(url)
+
+
+#load bs4
+soup = BeautifulSoup(html, "lxml")
+type(soup)
+
+
+#Finds product category 
+def retrieve_category():
+    category_tags = soup.find('span', class_='breadcrumb-element')
+    category = category_tags.get_text()     #removes tags from result
+    print(category)
+    
+          
+if __name__ == '__main__':
+      retrieve_category()
+      
+
+#finds number of products
+def retrieve_count_products():
+    product_count = soup.find('span', class_='products-count')
+    count = product_count.get_text()        #removes tags from result
+    print(count)
+    
+          
+if __name__ == '__main__':
+      retrieve_count_products()
+      
+      
